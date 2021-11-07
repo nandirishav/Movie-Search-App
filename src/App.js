@@ -37,15 +37,19 @@ function App() {
   return (
     <>
       <header>
-        <form onSubmit={handleOnSubmit}>
-          <input
-            className="search"
-            type="search"
-            placeholder="Search..."
-            value={searchTerm}
-            onChange={handleOnChange}
-          />
-        </form>
+        <div className="title">Movies App</div>
+        <div className="right">
+          <div className="favourite-page-navItem">Favourites</div>
+          <form onSubmit={handleOnSubmit}>
+            <input
+              className="search"
+              type="search"
+              placeholder="Search..."
+              value={searchTerm}
+              onChange={handleOnChange}
+            />
+          </form>
+        </div>
       </header>
       <div className="container">
         {movies.length > 0 &&

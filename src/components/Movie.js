@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHeart as farHeart } from "@fortawesome/free-regular-svg-icons";
 
 const IMG_API = "https://image.tmdb.org/t/p/w1280";
 const Movie = ({ title, poster_path, overview, vote_average }) => {
@@ -11,6 +14,18 @@ const Movie = ({ title, poster_path, overview, vote_average }) => {
       return "red";
     }
   };
+
+  const [favouriteSolid, setFavouriteSolid] = useState(false);
+  const [isActive, setActive] = useState(false);
+
+  const handleFavouriteClick = (e) => {
+    e.preventDefault();
+    setFavouriteSolid(!favouriteSolid);
+  };
+  const handleInfoClick = () => {
+    setActive(!isActive);
+  };
+
   return (
     <div className="movie">
       <img
@@ -22,12 +37,22 @@ const Movie = ({ title, poster_path, overview, vote_average }) => {
         alt="title"
       />
       <div className="movie-info">
-        <h3>{title}</h3>
+        <div>{title}</div>
+        <div className="more" onClick={handleInfoClick}>
+          Know More
+        </div>
+        <div className="favourite" onClick={handleFavouriteClick}>
+          {favouriteSolid ? (
+            <FontAwesomeIcon icon={faHeart} />
+          ) : (
+            <FontAwesomeIcon icon={farHeart} />
+          )}
+        </div>
         <span className={`tag ${setVoteClass(vote_average)}`}>
           {vote_average}
         </span>
       </div>
-      <div className="movie-over">
+      <div className={isActive ? "movie-over-active" : "movie-over"}>
         <h2>Overview</h2>
         <p>{overview}</p>
       </div>

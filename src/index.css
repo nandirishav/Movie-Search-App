@@ -43,10 +43,27 @@ body {
   padding: 1rem;
   align-items: center;
   justify-content: space-between;
+  font-size: 14px;
+  position: relative;
 }
 
-.movie-info h3 {
+.movie-info div {
   margin: 0;
+}
+
+.favourite {
+  cursor: pointer;
+}
+
+.more {
+  font-size: 12px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translateY(-50%);
+  text-decoration: underline;
+  color: whitesmoke;
+  cursor: pointer;
 }
 
 .movie-over {
@@ -71,7 +88,22 @@ header {
   background-color: #373b69;
   padding: 1rem;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  font-size: 1.5rem;
+  margin-left: 6%;
+}
+
+.favourite-page-navItem {
+  margin-right: 1.5rem;
 }
 
 .search {
