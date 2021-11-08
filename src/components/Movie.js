@@ -4,7 +4,8 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as farHeart } from "@fortawesome/free-regular-svg-icons";
 
 const IMG_API = "https://image.tmdb.org/t/p/w1280";
-const Movie = ({ title, poster_path, overview, vote_average }) => {
+const Movie = (data) => {
+  const { title, poster_path, overview, vote_average } = data.data;
   const setVoteClass = (vote) => {
     if (vote > 8) {
       return "green";

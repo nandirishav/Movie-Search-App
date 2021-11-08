@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import Movie from "./components/Movie";
+import MovieListing from "./components/MovieListing";
+import { addMovies } from "./redux/movieSlice";
 
 const FEATURED_API =
   "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=04c35731a5ee918f014970082a0088b1&page=1";
@@ -7,8 +10,9 @@ const SEARCH_API =
   "https://api.themoviedb.org/3/search/movie?&api_key=04c35731a5ee918f014970082a0088b1&query=";
 
 function App() {
-  const [movies, setMovies] = useState([]);
+  // const [movies, setMovies] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getMovies(FEATURED_API);
@@ -18,7 +22,8 @@ function App() {
     fetch(API)
       .then((res) => res.json())
       .then((data) => {
-        setMovies(data.results);
+        dispatch(addMovies(data.results));
+        // setMovies(data.results);
       });
   };
 
@@ -51,10 +56,7 @@ function App() {
           </form>
         </div>
       </header>
-      <div className="container">
-        {movies.length > 0 &&
-          movies.map((movie) => <Movie {...movie} key={movie.id} />)}
-      </div>
+      <MovieListing />
     </>
   );
 }
