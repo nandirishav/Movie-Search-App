@@ -2,10 +2,17 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as farHeart } from "@fortawesome/free-regular-svg-icons";
+import { useDispatch } from "react-redux";
+import { addFavourite } from "../redux/favouriteSlice";
+import { useLocation } from "react-router";
 
 const IMG_API = "https://image.tmdb.org/t/p/w1280";
-const Movie = (data) => {
-  const { title, poster_path, overview, vote_average } = data.data;
+const Movie = (props) => {
+  const URL = useLocation().pathname;
+  const [movie, setMovie] = useState(props.data);
+  // console.log(props.data);
+  const { title, poster_path, overview, vote_average, id } = props.data;
+  // console.log(id);
   const setVoteClass = (vote) => {
     if (vote > 8) {
       return "green";
@@ -18,10 +25,18 @@ const Movie = (data) => {
 
   const [favouriteSolid, setFavouriteSolid] = useState(false);
   const [isActive, setActive] = useState(false);
+  const [quantity, setQuantity] = useState(1);
+  const dispatch = useDispatch();
 
   const handleFavouriteClick = (e) => {
     e.preventDefault();
     setFavouriteSolid(!favouriteSolid);
+    // if (favouriteSolid === false) {
+    //   quantity > 1 && setQuantity(quantity - 1);
+    // } else {
+    //   setQuantity(quantity + 1);
+    // }
+    dispatch(addFavourite({ ...movie, quantity }));
   };
   const handleInfoClick = () => {
     setActive(!isActive);
@@ -43,7 +58,7 @@ const Movie = (data) => {
           Know More
         </div>
         <div className="favourite" onClick={handleFavouriteClick}>
-          {favouriteSolid ? (
+          {favouriteSolid || URL !== "favourites" ? (
             <FontAwesomeIcon icon={faHeart} />
           ) : (
             <FontAwesomeIcon icon={farHeart} />

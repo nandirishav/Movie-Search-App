@@ -11,6 +11,11 @@ body {
   margin: 0;
 }
 
+h2 {
+  margin: 0 7.3%;
+  color: rgb(99 164 246);
+}
+
 .root {
   display: flex;
   flex-direction: column;
@@ -80,9 +85,9 @@ body {
   transition: transform 0.3s ease-in-out;
 }
 
-.movie:hover .movie-over {
+/* .movie:hover .movie-over {
   transform: translateY(0%);
-}
+} */
 
 header {
   background-color: #373b69;
@@ -92,6 +97,14 @@ header {
   align-items: center;
 }
 
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #373b69;
+  padding: 2rem;
+}
+
 .right {
   display: flex;
   align-items: center;
@@ -99,11 +112,26 @@ header {
 
 .title {
   font-size: 1.5rem;
-  margin-left: 6%;
+  color: white;
+}
+
+a:-webkit-any-link {
+  cursor: pointer;
+  margin-left: 5.8rem;
+  text-decoration: none;
+}
+
+.css-i4bv87-MuiSvgIcon-root {
+  color: red;
+}
+
+.fav-icon {
+  margin-right: 2rem;
 }
 
 .favourite-page-navItem {
   margin-right: 1.5rem;
+  color: #fff;
 }
 
 .search {
@@ -113,7 +141,8 @@ header {
   border: 2px solid #22254b;
   border-radius: 50px;
   color: #fff;
-  padding: 0.5rem 1.5rem;
+  padding: 0.5rem 1.3rem;
+  margin-right: 1.5rem;
 }
 
 .search:focus {
