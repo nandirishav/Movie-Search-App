@@ -12,7 +12,7 @@ const Movie = (props) => {
   const [movie, setMovie] = useState(props.data);
   // console.log(props.data);
   const { title, poster_path, overview, vote_average, id } = props.data;
-  // console.log(id);
+
   const setVoteClass = (vote) => {
     if (vote > 8) {
       return "green";
@@ -30,13 +30,12 @@ const Movie = (props) => {
 
   const handleFavouriteClick = (e) => {
     e.preventDefault();
-    setFavouriteSolid(!favouriteSolid);
-    // if (favouriteSolid === false) {
-    //   quantity > 1 && setQuantity(quantity - 1);
-    // } else {
-    //   setQuantity(quantity + 1);
-    // }
-    dispatch(addFavourite({ ...movie, quantity }));
+    if (URL === "/favourites") {
+      return;
+    } else {
+      setFavouriteSolid(!favouriteSolid);
+      dispatch(addFavourite({ ...movie, quantity }));
+    }
   };
   const handleInfoClick = () => {
     setActive(!isActive);
@@ -58,7 +57,7 @@ const Movie = (props) => {
           Know More
         </div>
         <div className="favourite" onClick={handleFavouriteClick}>
-          {favouriteSolid || URL !== "favourites" ? (
+          {favouriteSolid ? (
             <FontAwesomeIcon icon={faHeart} />
           ) : (
             <FontAwesomeIcon icon={farHeart} />

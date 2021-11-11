@@ -11,6 +11,9 @@ const favouriteSlice = createSlice({
       state.quantity += 1;
       state.movies.push(payload);
     },
+    // removeFavourite : (state) => {
+    //   state.quantity -= 1;
+    // }
   },
 });
 
